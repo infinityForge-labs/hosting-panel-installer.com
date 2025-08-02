@@ -1,25 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>InfinityForge Panel Installer | Professional Minecraft Hosting Automation</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Professional one-click Minecraft panel installer script. Effortlessly set up Minecraft server panels on Linux VPS using our automated bash installer.">
-  <meta name="keywords" content="infinityforge panel installer, how to install minecraft hosting panel, how to install hosting panel, how to install panel, how to make hosting, rakibul islam joy, joy,hosting installer, infinityForge panel installer, panel installer, minecraft server hosting, minecraft hosting panel, minecraft server panel installer, panel installer for minecraft, one-click minecraft server setup, minecraft vps hosting, minecraft auto installer script, pterodactyl panel installer, pterodactyl minecraft hosting, free minecraft hosting panel, bash installer minecraft server, minecraft docker installer, linux minecraft panel installer, minecraft server setup bash script, vps minecraft server panel, minecraft server auto install, minecraft control panel installer, minecraft panel script, minecraft game server hosting, minecraft hosting automation, pterodactyl bash installer, best minecraft server panel, minecraft server deployment tool, minecraft server panel setup, minecraft panel installation command, minecraft server installation automation">
+  <meta name="description" content="Professional one-click Minecraft panel installer script. Effortlessly set up Minecraft server panels on Linux VPS using our automated bash installer." />
+  <meta name="keywords" content="infinityforge panel installer, how to install minecraft hosting panel, pterodactyl panel installer, minecraft server auto install" />
   <meta name="author" content="InfinityForge Labs" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://infinityforge-labs.github.io/hosting-panel-installer.com/" />
 
-  <!-- Open Graph for Facebook -->
+  <!-- Open Graph & Twitter -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://infinityforge-labs.github.io/hosting-panel-installer.com/" />
   <meta property="og:title" content="InfinityForge Panel Installer | Professional Minecraft Hosting Automation" />
   <meta property="og:description" content="Automated one-click Minecraft panel installer script for fast and reliable server setup on Linux VPS." />
   <meta property="og:image" content="https://infinityforge-labs.github.io/hosting-panel-installer.com/assets/og-image.png" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://infinityforge-labs.github.io/hosting-panel-installer.com/" />
   <meta name="twitter:title" content="InfinityForge Panel Installer | Professional Minecraft Hosting Automation" />
@@ -30,110 +28,346 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
 
-  <!-- Custom Animations -->
+  <!-- Custom Styles and Animations -->
   <style>
     body {
       font-family: 'Fira Mono', monospace;
+      background: linear-gradient(135deg, #0f172a, #000000);
+      color: #e0f2fe;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem;
     }
 
+    main {
+      max-width: 960px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    /* Fade-in Up Animation */
     .fade-in-up {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease-out;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
     }
-
     .fade-in-up.show {
       opacity: 1;
       transform: translateY(0);
     }
 
+    /* Header Styles */
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 3.5rem;
+      color: #3b82f6;
+      text-shadow: 0 0 8px #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    header h1 .emoji {
+      animation: pulse 2.5s ease-in-out infinite;
+      display: inline-block;
+    }
+    header p {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      color: #94a3b8;
+    }
+
+    /* Installer Command Container */
     .command-container {
       background: linear-gradient(135deg, #1e293b, #0f172a);
       border: 2px solid #3b82f6;
       border-radius: 1rem;
       padding: 2rem 3rem;
       color: #7ee3f7;
-      font-size: 1.1rem;
+      font-size: 1.125rem;
       overflow-x: auto;
-      box-shadow: inset 0 0 8px #2563eb, 0 4px 15px rgba(37, 99, 235, 0.5);
+      box-shadow:
+        inset 0 0 10px #2563eb,
+        0 5px 15px rgba(37, 99, 235, 0.6);
       position: relative;
+      font-weight: 500;
+      user-select: all;
+    }
+    .command-container pre {
+      margin: 0;
+      font-family: 'Fira Mono', monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
+    /* Copy Button */
     .copy-btn {
       position: absolute;
       bottom: 1rem;
       right: 1rem;
       background-color: #3b82f6;
       border-radius: 9999px;
-      padding: 0.75rem;
+      padding: 0.75rem 1rem;
       font-size: 1.25rem;
       color: white;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(59, 130, 246, 0.6);
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.7);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
     }
-
-    .copy-btn:hover {
+    .copy-btn:hover, .copy-btn:focus {
       transform: scale(1.1);
       background-color: #2563eb;
+      outline: none;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    .copy-btn:focus-visible {
+      outline: 2px solid #93c5fd;
+      outline-offset: 2px;
     }
 
+    /* Copy Status Text */
+    #copyStatus {
+      color: #22c55e;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      animation: bounce 1s ease infinite;
+    }
+    #copyStatus.hidden {
+      display: none;
+    }
+
+    /* Readme Box */
     .readme-box {
       background: linear-gradient(to right, #0f172a, #1e293b);
       border: 1px solid #3b82f6;
       border-radius: 1rem;
-      padding: 2rem;
+      padding: 2rem 2.5rem;
       box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+      color: #cbd5e1;
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+    .readme-box h2, .readme-box h3 {
+      color: #60a5fa;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .readme-box h2 .emoji,
+    .readme-box h3 .emoji {
+      animation: bounce 2s infinite;
+      font-size: 1.4rem;
+      display: inline-block;
+    }
+
+    ul.list-disc li {
+      margin-bottom: 0.35rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #cbd5e1;
+    }
+    th, td {
+      border: 1px solid #3b82f6;
+      padding: 0.5rem 1rem;
+      text-align: left;
+    }
+    thead tr {
+      background-color: #1e40af;
+      color: white;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #1e293b;
+    }
+
+    /* Footer */
+    footer {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 2rem;
+    }
+    footer a {
+      color: #3b82f6;
+      text-decoration: underline;
+    }
+    footer a:hover {
+      color: #60a5fa;
+    }
+
+    /* Keyframe Animations */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.85; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
   </style>
 </head>
 
-<body class="bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white min-h-screen flex items-center justify-center px-4 py-10">
-
-  <main class="max-w-4xl w-full text-center space-y-16">
+<body>
+  <main>
     <!-- Header -->
-    <header class="fade-in-up">
-      <h1 class="text-5xl md:text-7xl font-extrabold text-blue-500 drop-shadow-md" style="font-family: 'Orbitron', sans-serif;">
-        ✨ InfinityForge Installer 🌐
+    <header class="fade-in-up" role="banner">
+      <h1>
+        <span class="emoji" aria-hidden="true">✨</span> InfinityForge Installer <span class="emoji" aria-hidden="true">🌐</span>
       </h1>
-      <p class="mt-5 text-lg md:text-2xl text-gray-300">
-        🚀 One-click Minecraft Server Panel setup with professional automation.
-      </p>
+      <p>🚀 One-click Minecraft Server Panel setup with professional automation.</p>
     </header>
 
     <!-- Installer Command -->
     <section class="fade-in-up" aria-label="Installer Command">
-      <div class="command-container" role="region" aria-live="polite">
-        <pre id="installCmd" tabindex="0">bash &lt;(curl -fsSL https://github.com/infinityForge-labs/panel-Installer/raw/refs/heads/main/Install.sh)</pre>
-        <button onclick="copyCommand()" class="copy-btn" title="Copy to clipboard">📋</button>
+      <div class="command-container" role="region" aria-live="polite" aria-atomic="true" tabindex="0" aria-label="Installation command">
+        <pre id="installCmd">bash &lt;(curl -fsSL https://github.com/infinityForge-labs/panel-Installer/raw/refs/heads/main/Install.sh)</pre>
+        <button
+          onclick="copyCommand()"
+          class="copy-btn"
+          aria-describedby="copyStatus"
+          title="Copy installation command to clipboard"
+          type="button"
+        >
+          📋 Copy
+        </button>
       </div>
-      <p id="copyStatus" class="text-green-400 mt-2 text-sm hidden animate-bounce">✅ Command copied!</p>
+      <p id="copyStatus" class="hidden" role="status" aria-live="polite">✅ Command copied!</p>
     </section>
 
-    <!-- README Info -->
-    <section class="readme-box text-left fade-in-up">
-      <h2 class="text-3xl font-bold text-blue-400 mb-4">📘 README</h2>
-      <p class="mb-3"><strong>InfinityForge Panel Installer</strong> lets you set up Minecraft hosting panels like Pterodactyl with just one command.</p>
-      <ul class="list-disc list-inside text-gray-300 space-y-2">
-        <li>✅ Fully automated install process</li>
-        <li>✅ Ubuntu 20.04 / 22.04 supported</li>
-        <li>✅ No Linux experience required</li>
-        <li>✅ Easy to customize and white-label</li>
+    <!-- Readme Section -->
+    <section class="readme-box fade-in-up" aria-labelledby="readme-title">
+      <h2 id="readme-title"><span class="emoji" aria-hidden="true">🌐</span> Hosting Panel Installer</h2>
+      <p>
+        Welcome to the <strong>Hosting Panel Installer</strong> – a professional-grade automation script designed to deploy your web/game hosting panel with a single command. Built for speed, stability, and simplicity, this installer ensures you get up and running within minutes.
+      </p>
+
+      <hr class="border-blue-600 my-6" />
+
+      <h3><span class="emoji" aria-hidden="true">🚀</span> Key Features</h3>
+      <ul class="list-disc list-inside mb-8">
+        <li>✅ One-click automated installation</li>
+        <li>🔒 Built-in firewall &amp; security hardening</li>
+        <li>👨‍💻 Admin and client control panel</li>
+        <li>🧾 Auto SSL (Let's Encrypt)</li>
+        <li>🔁 Update manager &amp; auto-backups</li>
+        <li>📊 Real-time resource monitoring</li>
       </ul>
-      <p class="mt-4 text-gray-400 text-sm">Run the command on your VPS and have your panel ready in minutes!</p>
+
+      <hr class="border-blue-600 my-6" />
+
+      <h3><span class="emoji" aria-hidden="true">📋</span> System Requirements</h3>
+      <div class="overflow-x-auto mb-8">
+        <table>
+          <thead>
+            <tr>
+              <th>Resource</th>
+              <th>Minimum</th>
+              <th>Recommended</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>OS</td>
+              <td>Ubuntu 20.04+ (64-bit)</td>
+              <td>Ubuntu 22.04 LTS</td>
+            </tr>
+            <tr>
+              <td>RAM</td>
+              <td>1 GB</td>
+              <td>2 GB or more</td>
+            </tr>
+            <tr>
+              <td>Disk Space</td>
+              <td>10 GB</td>
+              <td>20+ GB SSD</td>
+            </tr>
+            <tr>
+              <td>Access</td>
+              <td>Root user (sudo)</td>
+              <td>Full SSH access</td>
+            </tr>
+            <tr>
+              <td>Internet</td>
+              <td>Required</td>
+              <td>Stable connection</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="border-blue-600 my-6" />
+
+      <h3><span class="emoji" aria-hidden="true">🛟</span> Support &amp; Contact</h3>
+      <p>We are here to help you <strong>24/7</strong>!</p>
+      <ul class="mb-6 space-y-1">
+        <li>📧 <strong>Email:</strong> <a href="mailto:infinityforgesup@gmail.com" class="text-blue-400 hover:underline">infinityforgesup@gmail.com</a></li>
+        <li>🌐 <strong>Website:</strong> <span class="italic text-gray-500">coming soon</span></li>
+        <li>💬 <strong>Discord:</strong> <a href="https://discord.gg/xxxxxxx" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">https://discord.gg/xxxxxxx</a></li>
+        <li>📞 <strong>Phone:</strong> +8801793333015 <span class="text-sm italic">(10am–10pm)</span></li>
+      </ul>
+      <p>
+        Have a question, need assistance, or found a bug?<br />
+        Open a ticket or contact our support team via Discord or email.
+      </p>
+
+      <hr class="border-blue-600 my-6" />
+
+      <h3><span class="emoji" aria-hidden="true">📢</span> Important Notice</h3>
+      <p>
+        This installer or any part of it (including design, concept, script, or features) is created and maintained by <strong>Joy</strong> and <strong>Jishnu</strong>.
+      </p>
+      <p>
+        🎥 <strong>If you create any content (video, blog, tutorial, etc.) using this installer or showcasing it publicly, you MUST give proper credit to:</strong>
+      </p>
+      <p class="text-blue-400 font-semibold">➤ Joy &amp; Jishnu</p>
+      <ul class="list-disc list-inside space-y-1 text-gray-400">
+        <li>✅ Be respectful.</li>
+        <li>❌ Don’t copy without credit.</li>
+        <li>🚫 No re-uploading as your own.</li>
+      </ul>
+      <p>Thank you for your cooperation.</p>
+
+      <hr class="border-blue-600 my-6" />
+
+      <h3><span class="emoji" aria-hidden="true">👑</span> Developed By</h3>
+      <p>Credit - <strong>Jishnu &amp; Joy</strong></p>
+      <p>Code made - <strong>Joy</strong></p>
+      <p>Code improved - <strong>Jishnu</strong></p>
+      <p class="text-gray-400 font-mono text-sm mt-4">
+        <strong>InfinityForge Technologies</strong><br />
+        Empowering developers, gamers, and creators through reliable infrastructure.
+      </p>
     </section>
 
     <!-- Footer -->
-    <footer class="text-gray-500 text-xs mt-10 fade-in-up">
+    <footer class="fade-in-up" role="contentinfo">
       &copy; 2025 <a href="https://yourdomain.com" class="underline hover:text-blue-400">InfinityForge Labs</a>. All rights reserved.
     </footer>
   </main>
 
   <!-- Scripts -->
   <script>
+    // Copy install command to clipboard and show feedback
     function copyCommand() {
       const cmd = document.getElementById('installCmd').textContent.trim();
       navigator.clipboard.writeText(cmd).then(() => {
@@ -141,15 +375,16 @@
         status.classList.remove('hidden');
         setTimeout(() => status.classList.add('hidden'), 3000);
       }).catch(() => {
-        alert('Copy failed. Try manually.');
+        alert('Copy failed. Please copy manually.');
       });
     }
 
-    // Fade-in animation with Intersection Observer
+    // Fade-in-up animation on scroll using Intersection Observer
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
+          observer.unobserve(entry.target); // Animate once
         }
       });
     }, { threshold: 0.1 });
@@ -158,3 +393,4 @@
   </script>
 </body>
 </html>
+
