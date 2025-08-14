@@ -240,7 +240,8 @@
     <!-- Installer Command -->
     <section class="fade-in-up" aria-label="Installer Command">
       <div class="command-container" role="region" aria-live="polite" aria-atomic="true" tabindex="0" aria-label="Installation command">
-        <pre id="installCmd">bash &lt;(curl -fsSL https://github.com/infinityForge-labs/panel-Installer/raw/refs/heads/main/Install.sh)</pre>
+        <pre id="installCmd">docker &lt; run -it --rm 
+infinityforge/panel-installer</pre>
         <button
           onclick="copyCommand()"
           class="copy-btn"
